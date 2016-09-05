@@ -5,6 +5,7 @@ namespace Kanboard\Plugin\TaskBoardDate;
 use Kanboard\Core\Plugin\Base;
 use Kanboard\Core\Translator;
 use Kanboard\Model\TaskModel;
+use Kanboard\Plugin\TaskBoardDate\Filter\TaskBoardDateFilter;
 use Kanboard\Plugin\TaskBoardDate\Pagination\FutureTaskPagination;
 use PicoDb\Table;
 
@@ -24,6 +25,11 @@ class Plugin extends Base
             return array(
                 'paginator' => FutureTaskPagination::getInstance($this->container)->getDashboardPaginator($user['id'], true)
             );
+        });
+
+        $this->container->extend('taskLexer', function($taskLexer, $c) {
+            $taskLexer->withFilter(TaskBoardDateFilter::getInstance($c)->setDateParser($c['dateParser']));
+            return $taskLexer;
         });
     }
 
