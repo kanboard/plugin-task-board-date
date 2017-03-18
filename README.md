@@ -18,7 +18,7 @@ Author
 Requirements
 ------------
 
-- Kanboard >= 1.0.33
+- Kanboard >= 1.0.41
 - PHP >= 5.4
 
 Installation

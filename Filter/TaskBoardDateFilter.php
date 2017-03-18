@@ -5,7 +5,6 @@ namespace Kanboard\Plugin\TaskBoardDate\Filter;
 use Kanboard\Core\Filter\FilterInterface;
 use Kanboard\Filter\BaseDateFilter;
 use Kanboard\Model\TaskModel;
-use PicoDb\Table;
 
 /**
  * Filter tasks by board date

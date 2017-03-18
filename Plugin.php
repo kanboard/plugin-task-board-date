@@ -13,17 +13,16 @@ class Plugin extends Base
 {
     public function initialize()
     {
+        $container = $this->container;
+
         $this->hook->on('formatter:board:query', array($this, 'applyDateFilter'));
-        $this->hook->on('pagination:dashboard:task:query', array($this, 'applyDateFilter'));
-        $this->hook->on('pagination:dashboard:subtask:query', array($this, 'applyDateFilter'));
         $this->hook->on('model:task:creation:prepare', array($this, 'beforeSave'));
         $this->hook->on('model:task:modification:prepare', array($this, 'beforeSave'));
 
         $this->template->hook->attach('template:task:form:third-column', 'TaskBoardDate:task_creation/form');
-        $this->template->hook->attach('template:dashboard:sidebar', 'TaskBoardDate:dashboard/sidebar');
-        $this->template->hook->attachCallable('template:dashboard:show', 'TaskBoardDate:dashboard/show', function(array $user) {
+        $this->template->hook->attachCallable('template:dashboard:show', 'TaskBoardDate:dashboard/show', function(array $user) use ($container) {
             return array(
-                'paginator' => FutureTaskPagination::getInstance($this->container)->getDashboardPaginator($user['id'], true)
+                'paginator' => FutureTaskPagination::getInstance($container)->getDashboardPaginator($user['id'])
             );
         });
 
@@ -66,7 +65,7 @@ class Plugin extends Base
 
     public function getPluginVersion()
     {
-        return '1.0.1';
+        return '1.0.2';
     }
 
     public function getPluginHomepage()
@@ -76,6 +75,6 @@ class Plugin extends Base
 
     public function getCompatibleVersion()
     {
-        return '>=1.0.37';
+        return '>=1.0.41';
     }
 }
