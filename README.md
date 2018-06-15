@@ -1,7 +1,7 @@
 Task Board Date
 ===============
 
-[![Build Status](https://travis-ci.org/kanboard/plugin-task-board-date.svg?branch=master)](https://travis-ci.org/kanboard/plugin-task-board-date)
+**This plugin is not maintained anymore!**
 
 - Add a new date field for tasks to define the visibility on the board and dashboard.
 - Add a new section on the dashboard for future tasks.
